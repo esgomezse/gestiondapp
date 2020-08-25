@@ -1,55 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/umb_logo"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GestionDAPP"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="80dp"
+        android:text="Ingresa tus datos:"
+        android:textSize="20sp"
+        android:textStyle="italic" />
 
     <EditText
-        android:id="@+id/edtEmail"
+        android:id="@+id/sgnupEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Correo electronico"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginTop="20dp" />
+        android:hint="Correo electrónico" />
+
 
     <EditText
-        android:id="@+id/edtPassword"
+        android:id="@+id/sgnupPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Contraseña"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
-        android:inputType="textPassword" />
-
+        android:inputType="textPassword"/>
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Iniciar Sesión"
+        android:text="Registrarse"
         android:textAllCaps="false"
         android:layout_gravity="center"
         android:textColor="@android:color/white"
         android:background="@color/buttonColor"
         android:layout_marginTop="20dp"
-        android:padding="15dp" />
+        android:padding="15dp"/>
+
+
 </LinearLayout>
