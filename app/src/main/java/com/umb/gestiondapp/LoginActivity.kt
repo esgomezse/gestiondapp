@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class LoginActivity: AppCompatActivity() {
 
@@ -20,7 +21,20 @@ class LoginActivity: AppCompatActivity() {
 
     private fun initListeners() {
         btnLogin.setOnClickListener {
-            doLogin()
+            when {
+                edtEmail.text.isNullOrEmpty() -> {
+                    edtEmail.error = "Campo vacio"
+                }
+                edtPassword.text.isNullOrEmpty() -> {
+                    edtPassword.error = "Campo vacío"
+                }
+                edtPassword.text.length < 6 -> {
+                    edtPassword.error = "Tu contraseña debe tener mínimo 6 caracteres"
+                }
+                else -> doLogin()
+            }
+
+
         }
         registro.setOnClickListener {
             startActivity(
@@ -31,15 +45,15 @@ class LoginActivity: AppCompatActivity() {
     }
 
     private fun doLogin() {
-        auth.createUserWithEmailAndPassword(edtEmail.text.toString(), edtPassword.text.toString())
+        auth.signInWithEmailAndPassword(edtEmail.text.toString(), edtPassword.text.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    val user = auth.currentUser
-
+                    startActivity(
+                        Intent(this,HomeActivity::class.java)
+                    )
+                    finish()
                 } else {
-                    // If sign in fails, display a message to the user.
-                    Toast.makeText(baseContext, "Authentication failed.",
+                    Toast.makeText(baseContext, "¡Revisa tus datos!",
                         Toast.LENGTH_SHORT).show()
                 }
             }
