@@ -1,5 +1,6 @@
 package com.umb.gestiondapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,12 @@ class LoginActivity: AppCompatActivity() {
     private fun initListeners() {
         btnLogin.setOnClickListener {
             doLogin()
+        }
+        registro.setOnClickListener {
+            startActivity(
+                Intent(this,SignUpActivity::class.java)
+            )
+            finish()
         }
     }
 
