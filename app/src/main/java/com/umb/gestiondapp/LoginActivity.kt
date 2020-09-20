@@ -8,7 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
-class LoginActivity: AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
@@ -16,7 +16,8 @@ class LoginActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         auth = FirebaseAuth.getInstance()
-        initListeners()
+        if (auth.currentUser != null) navigateToHome()
+        else initListeners()
     }
 
     private fun initListeners() {
@@ -33,12 +34,10 @@ class LoginActivity: AppCompatActivity() {
                 }
                 else -> doLogin()
             }
-
-
         }
         registro.setOnClickListener {
             startActivity(
-                Intent(this,SignUpActivity::class.java)
+                Intent(this, SignUpActivity::class.java)
             )
             finish()
         }
@@ -48,14 +47,20 @@ class LoginActivity: AppCompatActivity() {
         auth.signInWithEmailAndPassword(edtEmail.text.toString(), edtPassword.text.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    startActivity(
-                        Intent(this,HomeActivity::class.java)
-                    )
-                    finish()
+                    navigateToHome()
                 } else {
-                    Toast.makeText(baseContext, "¡Revisa tus datos!",
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        baseContext, "¡Revisa tus datos!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
+    }
+
+    private fun navigateToHome() {
+        startActivity(
+            Intent(this, HomeActivity::class.java)
+        )
+        finish()
     }
 }
