@@ -11,7 +11,7 @@ class HomeActivity: AppCompatActivity() {
         setContentView(R.layout.home_activity)
         asistencias.setOnClickListener {
             startActivity(
-                Intent(this,ClasificacionMacro::class.java)
+                Intent(this,MacroActivity::class.java)
             )
         }
     }
