@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1041330244678",
+    "firebase_url": "https://ciapat-1b659.firebaseio.com",
+    "project_id": "ciapat-1b659",
+    "storage_bucket": "ciapat-1b659.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041330244678:android:e9b6f67c1570608d85ce47",
+        "android_client_info": {
+          "package_name": "com.umb.gestiondapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041330244678-kqpfkl2cj4pt148sm0bqq60rgk7c4jla.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.umb.gestiondapp",
+            "certificate_hash": "9802d4138eb3ad5b296067346849afc4daad6568"
+          }
+        },
+        {
+          "client_id": "1041330244678-hqiqa9arvj18bvabm8h4igctstp95h8r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARhmUtQzBPJpjnB8bOe9kCOXJcpIhJnbc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1041330244678-hqiqa9arvj18bvabm8h4igctstp95h8r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
