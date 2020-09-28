@@ -16,8 +16,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         auth = FirebaseAuth.getInstance()
-        if (auth.currentUser != null) navigateToHome()
-        else initListeners()
+        initListeners()
     }
 
     private fun initListeners() {
