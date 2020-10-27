@@ -10,20 +10,43 @@
         android:layout_width="96dp"
         android:layout_height="92dp"
         android:layout_marginStart="68dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="232dp"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_listado" />
+        app:srcCompat="@drawable/ic_check" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Lista de Asistencias Personales"
+        android:text="Asistencias Personales"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/asistencias"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/asistencias"
-        app:layout_constraintTop_toBottomOf="@+id/asistencias" />
+        tools:layout_editor_absoluteX="198dp"
+        tools:layout_editor_absoluteY="277dp" />
+
+
+    <ImageView
+        android:id="@+id/intercambio"
+        android:layout_width="96dp"
+        android:layout_height="92dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="76dp"
+        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/asistencias"
+        app:srcCompat="@drawable/ic_inter" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Préstamos"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="215dp"
+        tools:layout_editor_absoluteY="432dp" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

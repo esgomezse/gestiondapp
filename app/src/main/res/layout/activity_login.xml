@@ -8,16 +8,16 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/umb_logo"
+        android:layout_width="289dp"
+        android:layout_height="278dp"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="50dp"
+        android:background="@drawable/ic_gestion_dapp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GestionDAPP"
+        android:text="Gestion DAPP"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
         android:textSize="30sp"
