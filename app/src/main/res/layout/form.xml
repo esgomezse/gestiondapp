@@ -1,0 +1,117 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="178dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="40dp"
+            android:text="Subir una imagen"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/textView12"
+            android:layout_width="186dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="20dp"
+            android:hint="Nombre de la ayuda"
+            android:text="Nombre"
+            app:layout_constraintEnd_toEndOf="@+id/button"
+            app:layout_constraintStart_toStartOf="@+id/button"
+            app:layout_constraintTop_toBottomOf="@+id/button" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="242dp"
+            android:layout_height="31dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintEnd_toEndOf="@+id/textView12"
+            app:layout_constraintHorizontal_bias="0.517"
+            app:layout_constraintStart_toStartOf="@+id/textView12"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        <EditText
+            android:id="@+id/textView14"
+            android:layout_width="176dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="28dp"
+            android:hint="Marca"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="@+id/spinner"
+            app:layout_constraintStart_toStartOf="@+id/spinner"
+            app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+        <EditText
+            android:id="@+id/textView15"
+            android:layout_width="176dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="20dp"
+            android:hint="Modelo"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="@+id/textView14"
+            app:layout_constraintStart_toStartOf="@+id/textView14"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+        <EditText
+            android:id="@+id/textView16"
+            android:layout_width="178dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="20dp"
+            android:hint="Serie"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+        <EditText
+            android:id="@+id/textView18"
+            android:layout_width="190dp"
+            android:layout_height="47dp"
+            android:hint="Estado"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="169dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rounded_container_red"
+            android:text="Agregar ayuda"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.462"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="327dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView16"
+            tools:layout_editor_absoluteX="42dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+
