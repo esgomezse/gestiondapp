@@ -23,72 +23,109 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/textView12"
-            android:layout_width="241dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="20dp"
-            android:hint="Nombre de la ayuda"
-            android:text="Nombre"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:layout_constraintEnd_toEndOf="@+id/button"
-            app:layout_constraintStart_toStartOf="@+id/button"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
+            app:layout_constraintStart_toStartOf="@+id/spinner"
+            app:layout_constraintTop_toBottomOf="@+id/button">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="242dp"
             android:layout_height="31dp"
             android:layout_marginTop="28dp"
-            app:layout_constraintEnd_toEndOf="@+id/textView12"
+            app:layout_constraintEnd_toEndOf="@+id/filledTextField"
             app:layout_constraintHorizontal_bias="0.517"
-            app:layout_constraintStart_toStartOf="@+id/textView12"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            app:layout_constraintStart_toStartOf="@+id/filledTextField2"
+            app:layout_constraintTop_toBottomOf="@+id/filledTextField" />
 
-        <EditText
-            android:id="@+id/textView14"
-            android:layout_width="244dp"
-            android:layout_height="43dp"
-            android:layout_marginTop="28dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledTextField2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="Marca"
-            android:text="TextView"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:layout_constraintEnd_toEndOf="@+id/spinner"
-            app:layout_constraintStart_toStartOf="@+id/spinner"
-            app:layout_constraintTop_toBottomOf="@+id/spinner" />
+            app:layout_constraintStart_toStartOf="@+id/filledTextField3"
+            app:layout_constraintTop_toBottomOf="@+id/spinner">
 
-        <EditText
-            android:id="@+id/textView15"
-            android:layout_width="242dp"
-            android:layout_height="41dp"
-            android:layout_marginTop="20dp"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtMarca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledTextField3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="Modelo"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="@+id/textView14"
-            app:layout_constraintStart_toStartOf="@+id/textView14"
-            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:layout_constraintEnd_toEndOf="@+id/filledTextField2"
+            app:layout_constraintStart_toStartOf="@+id/filledTextField4"
+            app:layout_constraintTop_toBottomOf="@+id/filledTextField2">
 
-        <EditText
-            android:id="@+id/textView16"
-            android:layout_width="249dp"
-            android:layout_height="41dp"
-            android:layout_marginTop="28dp"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtModelo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledTextField4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="Serie"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="@+id/textView15"
-            app:layout_constraintHorizontal_bias="0.39"
-            app:layout_constraintStart_toStartOf="@+id/textView15"
-            app:layout_constraintTop_toBottomOf="@+id/textView15" />
-
-        <EditText
-            android:id="@+id/textView18"
-            android:layout_width="246dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="16dp"
-            android:hint="Estado"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="@+id/spinner2"
-            app:layout_constraintHorizontal_bias="0.491"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:layout_constraintEnd_toEndOf="@+id/filledTextField3"
             app:layout_constraintStart_toStartOf="@+id/spinner2"
-            app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+            app:layout_constraintTop_toBottomOf="@+id/filledTextField3">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtSerie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="245dp"
+            android:layout_height="28dp"
+            app:layout_constraintEnd_toEndOf="@+id/filledTextField4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filledTextField4" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledTextField5"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Estado"
+            app:layout_constraintEnd_toEndOf="@+id/spinner2"
+            app:layout_constraintStart_toStartOf="@+id/button2"
+            app:layout_constraintTop_toBottomOf="@+id/spinner2">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtEstado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
             android:id="@+id/button2"
@@ -99,20 +136,11 @@
             android:text="Agregar ayuda"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.462"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/filledTextField5"
+            app:layout_constraintHorizontal_bias="0.433"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
-        <Spinner
-            android:id="@+id/spinner2"
-            android:layout_width="245dp"
-            android:layout_height="28dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="@+id/textView16"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textView16"
-            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+            app:layout_constraintTop_toBottomOf="@+id/filledTextField5" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

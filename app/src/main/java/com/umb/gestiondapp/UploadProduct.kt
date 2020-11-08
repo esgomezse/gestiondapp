@@ -8,6 +8,7 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.firebase.database.ktx.database
@@ -62,7 +63,7 @@ class UploadProduct : AppCompatActivity() {
         uploadTask.addOnFailureListener {
             print(it)
         }.addOnSuccessListener { taskSnapshot ->
-            print(taskSnapshot)
+            Toast.makeText(this, "Se ha subido la imagen tio", Toast.LENGTH_LONG).show()
         }
     }
 
