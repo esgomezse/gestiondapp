@@ -1,69 +1,53 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="0dp">
+    android:layout_width="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_margin="16dp"
+        android:paddingBottom="16dp"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/button"
-            android:layout_width="243dp"
-            android:layout_height="47dp"
-            android:layout_marginTop="44dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="48dp"
+            android:paddingEnd="48dp"
             android:text="Subir una imagen"
             android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.442"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_gravity="center"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/filledTextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:layout_constraintEnd_toEndOf="@+id/button"
-            app:layout_constraintStart_toStartOf="@+id/spinner"
-            app:layout_constraintTop_toBottomOf="@+id/button">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtNombre"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="242dp"
-            android:layout_height="31dp"
-            android:layout_marginTop="28dp"
-            app:layout_constraintEnd_toEndOf="@+id/filledTextField"
-            app:layout_constraintHorizontal_bias="0.517"
-            app:layout_constraintStart_toStartOf="@+id/filledTextField2"
-            app:layout_constraintTop_toBottomOf="@+id/filledTextField" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/filledTextField2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Marca"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:layout_constraintEnd_toEndOf="@+id/spinner"
-            app:layout_constraintStart_toStartOf="@+id/filledTextField3"
-            app:layout_constraintTop_toBottomOf="@+id/spinner">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtMarca"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,15 +56,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Modelo"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:layout_constraintEnd_toEndOf="@+id/filledTextField2"
-            app:layout_constraintStart_toStartOf="@+id/filledTextField4"
-            app:layout_constraintTop_toBottomOf="@+id/filledTextField2">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtModelo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,61 +71,94 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Serie"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:layout_constraintEnd_toEndOf="@+id/filledTextField3"
-            app:layout_constraintStart_toStartOf="@+id/spinner2"
-            app:layout_constraintTop_toBottomOf="@+id/filledTextField3">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtSerie"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <Spinner
-            android:id="@+id/spinner2"
-            android:layout_width="245dp"
-            android:layout_height="28dp"
-            app:layout_constraintEnd_toEndOf="@+id/filledTextField4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/filledTextField4" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/filledTextField5"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Estado"
-            app:layout_constraintEnd_toEndOf="@+id/spinner2"
-            app:layout_constraintStart_toStartOf="@+id/button2"
-            app:layout_constraintTop_toBottomOf="@+id/spinner2">
+            android:hint="Estado">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtEstado"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPrice"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Precio">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:imeOptions="actionDone"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilLocation"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ubicación">
+
+            <AutoCompleteTextView
+                android:id="@+id/auTxvSelectLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="10"
+                android:enabled="false"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilMicro"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Micro">
+
+            <AutoCompleteTextView
+                android:id="@+id/auTxvMicro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="10"
+                android:enabled="false"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/button2"
-            android:layout_width="169dp"
-            android:layout_height="37dp"
-            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:padding="16dp"
             android:background="@drawable/rounded_container_red"
             android:text="Agregar ayuda"
+            android:layout_gravity="center"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
+            android:enabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/filledTextField5"
             app:layout_constraintHorizontal_bias="0.433"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/filledTextField5" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </LinearLayout>
 </ScrollView>
 

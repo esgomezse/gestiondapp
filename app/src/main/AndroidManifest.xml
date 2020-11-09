@@ -20,7 +20,9 @@
             android:label="Menú"/>
         <activity android:name=".MacroActivity" />
         <activity android:name=".UploadProduct"
-            android:theme="@style/MaterialNoActionBar">
+            android:label="Subir ayuda"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/MaterialAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

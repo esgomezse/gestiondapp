@@ -8,6 +8,7 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -29,15 +30,14 @@ class UploadProduct : AppCompatActivity() {
     val dbRef = database.getReference("/")
     val storage = Firebase.storage
     val storageRef = storage.reference
-    var photoUrl: Uri?=null
+    var photoUrl: Uri? = null
+    private val product = Product()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.form)
-
-        button.setOnClickListener {
-            validatePermission()
-        }
+        initListeners()
+        initLocationAdapter()
 
         val product = Product(
             "Silla test",
@@ -45,15 +45,31 @@ class UploadProduct : AppCompatActivity() {
             "Phillips",
             "EX420",
             "Bogotá",
-            "Nuevo",
-            "www.phto.com"
+            "Nuevo"
         )
+
+    }
+
+    private fun initLocationAdapter() {
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            listOf("Apartamento", "La wea 1", "La wea 2")
+        )
+        auTxvSelectLocation.setAdapter(adapter)
+    }
+
+    private fun initListeners() {
+        button.setOnClickListener {
+            validatePermission()
+        }
+    }
+
+    private fun saveProduct() {
         dbRef.child("Activo")
             .child("random")
             .child(UUID.randomUUID().toString())
             .setValue(product)
-
-
     }
 
     private fun uploadImage(pathFile: String) {
@@ -61,9 +77,12 @@ class UploadProduct : AppCompatActivity() {
 
         val uploadTask = storageRef.child(UUID.randomUUID().toString()).putStream(stream)
         uploadTask.addOnFailureListener {
-            print(it)
+            Toast.makeText(this, "Algo salio mal, intentalo nuevamente", Toast.LENGTH_SHORT).show()
         }.addOnSuccessListener { taskSnapshot ->
-            Toast.makeText(this, "Se ha subido la imagen tio", Toast.LENGTH_LONG).show()
+            taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener {
+                Toast.makeText(this, "Foto subida exitosamente", Toast.LENGTH_SHORT).show()
+                product.fotoUrl = it.toString()
+            }
         }
     }
 
@@ -142,11 +161,15 @@ class UploadProduct : AppCompatActivity() {
 }
 
 data class Product(
-    val nombre: String,
-    val precio: Int,
-    val marca: String,
-    val serie: String,
-    val ubicacion: String,
-    val estado: String,
-    val fotoUrl: String
-)
+    var nombre: String = "",
+    var precio: Int = 0,
+    var marca: String = "",
+    var serie: String = "",
+    var estado: String = "",
+    var fotoUrl: String = ""
+) {
+    fun enableButton() =
+        nombre.isNotEmpty() && precio != 0 && marca.isNotEmpty() && serie.isNotEmpty() &&
+                estado.isNotEmpty() && fotoUrl.isNotEmpty()
+
+}
