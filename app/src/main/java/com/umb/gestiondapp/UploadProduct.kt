@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.widget.addTextChangedListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -63,6 +64,40 @@ class UploadProduct : AppCompatActivity() {
         button.setOnClickListener {
             validatePermission()
         }
+
+        edtEstado.addTextChangedListener {
+            product.estado = it?.toString() ?: ""
+            button2.isEnabled = product.enableButton()
+        }
+
+        edtMarca.addTextChangedListener {
+            product.marca = it?.toString() ?: ""
+            button2.isEnabled = product.enableButton()
+        }
+
+        edtModelo.addTextChangedListener {
+            product.modelo = it?.toString() ?: ""
+            button2.isEnabled = product.enableButton()
+        }
+
+        edtNombre.addTextChangedListener {
+            product.nombre = it?.toString() ?: ""
+            button2.isEnabled = product.enableButton()
+        }
+
+        edtPrice.addTextChangedListener {
+            product.precio = it?.toString()?.toInt() ?: 0
+            button2.isEnabled = product.enableButton()
+        }
+
+        edtSerie.addTextChangedListener{
+            product.serie = it?.toString()?: ""
+            button2.isEnabled = product.enableButton()
+        }
+
+        button2.setOnClickListener {
+            saveProduct()
+        }
     }
 
     private fun saveProduct() {
@@ -82,6 +117,7 @@ class UploadProduct : AppCompatActivity() {
             taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener {
                 Toast.makeText(this, "Foto subida exitosamente", Toast.LENGTH_SHORT).show()
                 product.fotoUrl = it.toString()
+                button2.isEnabled = product.enableButton()
             }
         }
     }
@@ -166,10 +202,11 @@ data class Product(
     var marca: String = "",
     var serie: String = "",
     var estado: String = "",
+    var modelo: String = "",
     var fotoUrl: String = ""
 ) {
     fun enableButton() =
         nombre.isNotEmpty() && precio != 0 && marca.isNotEmpty() && serie.isNotEmpty() &&
-                estado.isNotEmpty() && fotoUrl.isNotEmpty()
+                estado.isNotEmpty() && fotoUrl.isNotEmpty() && modelo.isNotEmpty()
 
 }
