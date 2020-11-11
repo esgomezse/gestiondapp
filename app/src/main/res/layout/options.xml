@@ -7,20 +7,20 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cnlSubirAyuda"
-        android:layout_width="346dp"
-        android:layout_height="124dp"
-        android:layout_marginTop="164dp"
+        android:id="@+id/cnlUploadHelp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="48dp"
         android:background="@drawable/rounded_container_red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cnlInventory">
 
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="99dp"
             android:layout_height="74dp"
-            android:layout_marginStart="36dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,11 +28,12 @@
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Subir una ayuda"
             android:textColor="#FFFFFF"
-            android:textSize="24sp"
+            android:textSize="20sp"
+            android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView4"
@@ -40,14 +41,15 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="336dp"
-        android:layout_height="137dp"
-        android:layout_marginBottom="204dp"
+        android:id="@+id/cnlInventory"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="48dp"
         android:background="@drawable/rounded_container_red"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/cnlSubirAyuda"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/cnlSubirAyuda">
+        app:layout_constraintEnd_toEndOf="@+id/cnlUploadHelp"
+        app:layout_constraintTop_toBottomOf="@id/cnlUploadHelp"
+        app:layout_constraintStart_toStartOf="@+id/cnlUploadHelp">
 
         <ImageView
             android:id="@+id/imageView5"
@@ -62,11 +64,12 @@
 
         <TextView
             android:id="@+id/textView7"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Inventario"
             android:textColor="#FFFFFF"
-            android:textSize="24sp"
+            android:textSize="20sp"
+            android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView5"

@@ -6,8 +6,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cerrar sesión"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/colorPrimary"
+        android:drawableStart="@drawable/ic_close_session"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/cnlAssistant"
         android:layout_width="267dp"
         android:layout_height="192dp"
         android:layout_marginTop="88dp"
@@ -50,10 +61,10 @@
         android:layout_height="182dp"
         android:background="@drawable/rounded_container_red"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="@+id/cnlAssistant"
         app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="@+id/cnlAssistant"
+        app:layout_constraintTop_toBottomOf="@+id/cnlAssistant"
         app:layout_constraintVertical_bias="0.513">
 
         <ImageView

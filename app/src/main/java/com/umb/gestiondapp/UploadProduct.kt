@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.umb.gestiondapp.LocationsActivity.Companion.LOCATION
 import kotlinx.android.synthetic.main.form.*
 import java.io.File
 import java.io.FileInputStream
@@ -38,23 +39,14 @@ class UploadProduct : AppCompatActivity() {
     var photoUrl: Uri? = null
     private var product = Product()
     private val micros = ArrayList<String>()
-
+    private val location = intent.getStringExtra(LOCATION)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.form)
         initListeners()
         initLocationAdapter()
-
-        val product = Product(
-            "Silla test",
-            5000,
-            "Phillips",
-            "EX420",
-            "Bogotá",
-            "Nuevo"
-        )
-
+        getMicros()
     }
 
     private fun initLocationAdapter() {
@@ -105,14 +97,10 @@ class UploadProduct : AppCompatActivity() {
             saveProduct()
         }
 
-        auTxvSelectLocation.addTextChangedListener {
-            dbRef = database.getReference(it.toString())
-            getMicros()
-        }
-
     }
 
     fun getMicros(){
+        dbRef = database.getReference(location)
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 micros.clear()
