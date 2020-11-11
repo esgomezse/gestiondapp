@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="398dp"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25">
+
+        <ImageView
+            android:id="@+id/imagePrestamo"
+            android:layout_width="136dp"
+            android:layout_height="135dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.501"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/txvNombre"
+            android:layout_width="211dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="88dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.421"
+            app:layout_constraintStart_toEndOf="@+id/imagePrestamo"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Nombre" />
+
+        <TextView
+            android:id="@+id/txvMarca"
+            android:layout_width="209dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/txvNombre"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/txvNombre"
+            app:layout_constraintTop_toBottomOf="@+id/txvNombre"
+            tools:text="Marca" />
+
+        <TextView
+            android:id="@+id/txvModelo"
+            android:layout_width="209dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/txvMarca"
+            app:layout_constraintStart_toStartOf="@+id/txvMarca"
+            app:layout_constraintTop_toBottomOf="@+id/txvMarca"
+            tools:text="Modelo" />
+
+        <TextView
+            android:id="@+id/txvSerie"
+            android:layout_width="208dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/txvModelo"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/txvModelo"
+            app:layout_constraintTop_toBottomOf="@+id/txvModelo"
+            tools:text="Serie" />
+
+        <TextView
+            android:id="@+id/txvCosto"
+            android:layout_width="207dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/txvSerie"
+            app:layout_constraintStart_toStartOf="@+id/txvSerie"
+            app:layout_constraintTop_toBottomOf="@+id/txvSerie"
+            tools:text="Costo" />
+
+        <TextView
+            android:id="@+id/txvUbicacion"
+            android:layout_width="206dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/txvCosto"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/txvCosto"
+            app:layout_constraintTop_toBottomOf="@+id/txvCosto"
+            tools:text="Ubicación" />
+
+        <TextView
+            android:id="@+id/txvEstado"
+            android:layout_width="204dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/txvUbicacion"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/txvUbicacion"
+            app:layout_constraintTop_toBottomOf="@+id/txvUbicacion"
+            tools:text="Estado" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
