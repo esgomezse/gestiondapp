@@ -7,14 +7,14 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        android:id="@+id/cnlApartamento"
         android:layout_width="359dp"
         android:layout_height="139dp"
         android:layout_marginTop="96dp"
         android:background="@drawable/rounded_container_red"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout4"
+        app:layout_constraintEnd_toEndOf="@+id/cnlExpo"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout4"
+        app:layout_constraintStart_toStartOf="@+id/cnlExpo"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -41,15 +41,15 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout4"
+        android:id="@+id/cnlExpo"
         android:layout_width="359dp"
         android:layout_height="140dp"
         android:layout_marginTop="60dp"
         android:background="@drawable/rounded_container_red"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout3"
+        app:layout_constraintEnd_toEndOf="@+id/cnlSupplier"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout3"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+        app:layout_constraintStart_toStartOf="@+id/cnlSupplier"
+        app:layout_constraintTop_toBottomOf="@+id/cnlApartamento">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -76,7 +76,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout3"
+        android:id="@+id/cnlSupplier"
         android:layout_width="349dp"
         android:layout_height="134dp"
         android:layout_marginTop="52dp"
@@ -84,7 +84,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
+        app:layout_constraintTop_toBottomOf="@+id/cnlExpo"
         app:layout_constraintVertical_bias="0.0">
 
         <ImageView

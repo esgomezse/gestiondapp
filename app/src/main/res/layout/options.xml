@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout5"
+        android:id="@+id/cnlSubirAyuda"
         android:layout_width="346dp"
         android:layout_height="124dp"
         android:layout_marginTop="164dp"
@@ -45,9 +45,9 @@
         android:layout_marginBottom="204dp"
         android:background="@drawable/rounded_container_red"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout5"
+        app:layout_constraintEnd_toEndOf="@+id/cnlSubirAyuda"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout5">
+        app:layout_constraintStart_toStartOf="@+id/cnlSubirAyuda">
 
         <ImageView
             android:id="@+id/imageView5"

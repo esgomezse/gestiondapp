@@ -14,5 +14,10 @@ class HomeActivity: AppCompatActivity() {
                 Intent(this,MacroActivity::class.java)
             )
         }
+        cnlPrestamos.setOnClickListener {
+            startActivity(
+                Intent(this, UploadProduct::class.java)
+            )
+        }
     }
 }

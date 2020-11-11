@@ -2,6 +2,7 @@ package com.umb.gestiondapp
 
 import android.Manifest
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
@@ -13,6 +14,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.widget.addTextChangedListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -28,11 +32,13 @@ import java.util.*
 class UploadProduct : AppCompatActivity() {
 
     val database = Firebase.database
-    val dbRef = database.getReference("/")
+    var dbRef = database.getReference("/")
     val storage = Firebase.storage
     val storageRef = storage.reference
     var photoUrl: Uri? = null
-    private val product = Product()
+    private var product = Product()
+    private val micros = ArrayList<String>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +61,7 @@ class UploadProduct : AppCompatActivity() {
         val adapter = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_item,
-            listOf("Apartamento", "La wea 1", "La wea 2")
+            listOf("Activo", "Pasivo", "users")
         )
         auTxvSelectLocation.setAdapter(adapter)
     }
@@ -86,7 +92,7 @@ class UploadProduct : AppCompatActivity() {
         }
 
         edtPrice.addTextChangedListener {
-            product.precio = it?.toString()?.toInt() ?: 0
+            product.precio = it?.toString()?.toIntNotEmpty() ?: 0
             button2.isEnabled = product.enableButton()
         }
 
@@ -98,13 +104,63 @@ class UploadProduct : AppCompatActivity() {
         button2.setOnClickListener {
             saveProduct()
         }
+
+        auTxvSelectLocation.addTextChangedListener {
+            dbRef = database.getReference(it.toString())
+            getMicros()
+        }
+
+    }
+
+    fun getMicros(){
+        dbRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                micros.clear()
+                dataSnapshot.children.forEach {
+                    micros.add(it.key.toString())
+                }
+                setMicros()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+                print(error.toException())
+            }
+        })
+    }
+
+    private fun setMicros() {
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            micros
+        )
+        auTxvMicro.setAdapter(adapter)
     }
 
     private fun saveProduct() {
-        dbRef.child("Activo")
-            .child("random")
-            .child(UUID.randomUUID().toString())
-            .setValue(product)
+        dbRef = database.getReference("/")
+        dbRef.child(auTxvSelectLocation.text.toString())
+            .child(auTxvMicro.text.toString())
+            .child(Date().toString())
+            .setValue(product).addOnSuccessListener {
+                Toast.makeText(this, "Producto subido con éxito", Toast.LENGTH_SHORT).show()
+                clearFields()
+            }
+    }
+
+    private fun clearFields() {
+        product = Product()
+        edtEstado.setText("")
+        edtSerie.setText("")
+        edtPrice.setText("")
+        edtNombre.setText("")
+        edtMarca.setText("")
+        edtModelo.setText("")
+        auTxvMicro.setText("")
+        auTxvSelectLocation.setText("")
+        button2.isEnabled = product.enableButton()
+
     }
 
     private fun uploadImage(pathFile: String) {
@@ -194,6 +250,11 @@ class UploadProduct : AppCompatActivity() {
         const val UPLOAD_IMAGE = 27
         const val STORAGE_PERMISSION = 420
     }
+}
+
+private fun String?.toIntNotEmpty(): Int {
+    return if(this.isNullOrEmpty()) 0
+    else this.toInt()
 }
 
 data class Product(

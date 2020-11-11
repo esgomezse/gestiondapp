@@ -45,6 +45,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cnlPrestamos"
         android:layout_width="252dp"
         android:layout_height="182dp"
         android:background="@drawable/rounded_container_red"
