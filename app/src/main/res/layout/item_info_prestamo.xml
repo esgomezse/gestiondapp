@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="387dp"
+        android:layout_height="312dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.32"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.202">
+
+        <ImageView
+            android:id="@+id/imageInvData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.442"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/StudentName"
+            android:layout_width="178dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imageInvData"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Nombre del estudiante" />
+
+        <TextView
+            android:id="@+id/StudentCode"
+            android:layout_width="178dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/StudentName"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/StudentName"
+            app:layout_constraintTop_toBottomOf="@+id/StudentName"
+            tools:text="Código" />
+
+        <TextView
+            android:id="@+id/AyudaPrestada"
+            android:layout_width="178dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/StudentCode"
+            app:layout_constraintHorizontal_bias="0.018"
+            app:layout_constraintStart_toStartOf="@+id/StudentCode"
+            app:layout_constraintTop_toBottomOf="@+id/StudentCode"
+            tools:text="Ayuda prestada" />
+
+        <TextView
+            android:id="@+id/Signature"
+            android:layout_width="177dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/AyudaPrestada"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/AyudaPrestada"
+            app:layout_constraintTop_toBottomOf="@+id/AyudaPrestada"
+            tools:text="Asignatura" />
+
+        <TextView
+            android:id="@+id/Group"
+            android:layout_width="177dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/Signature"
+            app:layout_constraintStart_toStartOf="@+id/Signature"
+            app:layout_constraintTop_toBottomOf="@+id/Signature"
+            tools:text="Grupo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
