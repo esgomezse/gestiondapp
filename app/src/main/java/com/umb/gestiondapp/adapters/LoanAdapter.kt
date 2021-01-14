@@ -27,11 +27,11 @@ class LoanAdapter: RecyclerView.Adapter<LoanAdapter.LoanViewHolder> (){
         val itemLoan = listLoan[position]
         //holder.itemView.imageInventario
         with(holder.itemView){
-            StudentName.text = itemLoan.studname
-            StudentCode.text = itemLoan.code
-            AyudaPrestada.text = itemLoan.loan
-            Signature.text = itemLoan.signature
-            Group.text = itemLoan.group
+            txvStudentName.text = itemLoan.studname
+            txvStudentCode.text = itemLoan.code
+            txvStudentHelp.text = itemLoan.loan
+            txvStudentClass.text = itemLoan.signature
+            txvStudentGroup.text = itemLoan.group
         }
     }
     fun setList(list: List<LoanModel>){
