@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">gestiondapp</string>
+    <string name="lend">Prestar</string>
+    <string name="returned">Devuelto</string>
     <string-array name="macros">
         <item> Dispositivos activos </item>
         <item> Dispositivos pasivos </item>

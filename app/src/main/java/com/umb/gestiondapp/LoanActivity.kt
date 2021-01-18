@@ -1,7 +1,9 @@
 package com.umb.gestiondapp
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -10,7 +12,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import com.google.gson.Gson
 import com.umb.gestiondapp.adapters.LoanAdapter
 import com.umb.gestiondapp.models.LoanModel
 import kotlinx.android.synthetic.main.loan_activity.*
@@ -21,13 +22,34 @@ class LoanActivity : AppCompatActivity() {
     private val database = Firebase.database
     private var myRef: DatabaseReference = database.getReference("prestamos")
     private val loans = ArrayList<LoanModel>()
+    private var kindOfLoan = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.loan_activity)
+        kindOfLoan = intent.getStringExtra(KIND_OF_LOAN) ?: ""
         rcvLoan.adapter = loanAdapter
         rcvLoan.layoutManager = LinearLayoutManager(this)
         initFirebaseListener()
+        addObservers()
+    }
+
+    private fun addObservers() {
+        loanAdapter.events.observe(this, Observer {
+
+            val loan = it.toMap()
+
+            val childUpdates = hashMapOf<String, Any>(
+                "/${it.id}" to loan
+            )
+
+            myRef.updateChildren(childUpdates).addOnSuccessListener {
+                Toast.makeText(this, "Cambio de estado realizado", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(this, "Algo ha salido mal, vuelve a intentarlo", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
     }
 
     private fun initFirebaseListener() {
@@ -35,17 +57,22 @@ class LoanActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 loans.clear()
                 dataSnapshot.children.forEach {
-                    //Gson().fromJson(it.value, LoanModel)
-                    val loadModel = it.getValue<LoanModel>() ?: LoanModel()
-                    loans.add(loadModel)
+                    val loanModel = it.getValue<LoanModel>() ?: LoanModel()
+                    loanModel.id = it.key ?: ""
+                    if (loanModel.status == kindOfLoan) loans.add(loanModel)
                 }
                 loanAdapter.setList(loans)
             }
 
             override fun onCancelled(error: DatabaseError) {
-
                 print(error.toException())
             }
         })
+    }
+
+    companion object {
+        const val KIND_OF_LOAN = "kind of loan"
+        const val NEW = "nuevo"
+        const val BORROWED = "prestado"
     }
 }

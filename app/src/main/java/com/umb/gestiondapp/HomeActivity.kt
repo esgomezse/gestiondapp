@@ -33,5 +33,11 @@ class HomeActivity : AppCompatActivity() {
                 }
             )
         }
+
+        cnlPrestamos.setOnClickListener {
+            startActivity(
+                Intent(this, LoanOptions::class.java)
+            )
+        }
     }
 }

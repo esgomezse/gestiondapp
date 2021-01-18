@@ -3,6 +3,7 @@ package com.umb.gestiondapp.models
 import com.google.firebase.database.PropertyName
 
 data class LoanModel(
+    var id: String ="",
     @get:PropertyName("nombre")
     @set:PropertyName("nombre")
     var studname: String = "",
@@ -14,7 +15,7 @@ data class LoanModel(
     var loan: String = "",
     @get:PropertyName("asignatura")
     @set:PropertyName("asignatura")
-    var signature: String = "",
+    var subject: String = "",
     @get:PropertyName("curso")
     @set:PropertyName("curso")
     var group: String = "",
@@ -33,5 +34,18 @@ data class LoanModel(
         @set:PropertyName("encoded")
         var encoded: String = ""
     )
+
+    fun toMap(): Map<String, Any?> {
+        return mapOf(
+            "nombre" to studname,
+            "codigo" to code,
+            "ayuda" to loan,
+            "asignatura" to subject,
+            "curso" to group,
+            "fechaPrestamo" to date,
+            "estado" to status,
+            "imagen" to image
+        )
+    }
 }
 
