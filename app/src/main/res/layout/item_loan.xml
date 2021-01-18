@@ -9,29 +9,38 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imvStudentId"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txvTitleStudentName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/txvStudentName"
-        app:layout_constraintBottom_toBottomOf="@id/txvStudentName"
+        android:text="Nombre del estudiante"
         android:textColor="@android:color/black"
         android:textStyle="bold"
-        android:text="Nombre del estudiante" />
+        app:layout_constraintBottom_toBottomOf="@id/txvStudentName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txvStudentName" />
 
     <TextView
         android:id="@+id/txvStudentName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:layout_constraintStart_toEndOf="@id/txvTitleStudentName"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/txvTitleStudentName"
+        app:layout_constraintTop_toBottomOf="@id/imvStudentId"
         tools:text="Maria Estefania Gomez Segura" />
 
     <TextView
@@ -39,23 +48,23 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/txvStudentCode"
-        app:layout_constraintBottom_toBottomOf="@id/txvStudentCode"
+        android:text="Código"
         android:textColor="@android:color/black"
         android:textStyle="bold"
-        android:text="Código" />
+        app:layout_constraintBottom_toBottomOf="@id/txvStudentCode"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txvStudentCode" />
 
     <TextView
         android:id="@+id/txvStudentCode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/txvTitleStudentCode"
         app:layout_constraintTop_toBottomOf="@id/txvStudentName"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@android:color/black"
         tools:text="45345345" />
 
     <TextView
@@ -63,23 +72,23 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/txvStudentHelp"
-        app:layout_constraintBottom_toBottomOf="@id/txvStudentHelp"
+        android:text="Ayuda"
         android:textColor="@android:color/black"
         android:textStyle="bold"
-        android:text="Ayuda" />
+        app:layout_constraintBottom_toBottomOf="@id/txvStudentHelp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txvStudentHelp" />
 
     <TextView
         android:id="@+id/txvStudentHelp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/txvTitleStudentHelp"
         app:layout_constraintTop_toBottomOf="@id/txvStudentCode"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@android:color/black"
         tools:text="Silla de ruedas" />
 
     <TextView
@@ -87,23 +96,23 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/txvStudentClass"
-        app:layout_constraintBottom_toBottomOf="@id/txvStudentClass"
+        android:text="Asignatura"
         android:textColor="@android:color/black"
         android:textStyle="bold"
-        android:text="Asignatura" />
+        app:layout_constraintBottom_toBottomOf="@id/txvStudentClass"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txvStudentClass" />
 
     <TextView
         android:id="@+id/txvStudentClass"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/txvTitleStudentClass"
         app:layout_constraintTop_toBottomOf="@id/txvStudentHelp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@android:color/black"
         tools:text="Algebra lineal" />
 
     <TextView
@@ -111,23 +120,23 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/txvStudentGroup"
-        app:layout_constraintBottom_toBottomOf="@id/txvStudentGroup"
+        android:text="Grupo"
         android:textColor="@android:color/black"
         android:textStyle="bold"
-        android:text="Grupo" />
+        app:layout_constraintBottom_toBottomOf="@id/txvStudentGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txvStudentGroup" />
 
     <TextView
         android:id="@+id/txvStudentGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/txvTitleStudentGroup"
         app:layout_constraintTop_toBottomOf="@id/txvStudentClass"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@android:color/black"
         tools:text="A2" />
 
     <TextView
@@ -135,23 +144,23 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/txvStudentDate"
-        app:layout_constraintBottom_toBottomOf="@id/txvStudentDate"
+        android:text="Fecha de prestamo"
         android:textColor="@android:color/black"
         android:textStyle="bold"
-        android:text="Fecha de prestamo" />
+        app:layout_constraintBottom_toBottomOf="@id/txvStudentDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txvStudentDate" />
 
     <TextView
         android:id="@+id/txvStudentDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/txvTitleStudentDate"
         app:layout_constraintTop_toBottomOf="@id/txvStudentGroup"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@android:color/black"
         tools:text="09/09/1966" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

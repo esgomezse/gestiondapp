@@ -1,5 +1,8 @@
 package com.umb.gestiondapp.adapters
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,14 +30,24 @@ class LoanAdapter: RecyclerView.Adapter<LoanAdapter.LoanViewHolder> (){
         val itemLoan = listLoan[position]
         //holder.itemView.imageInventario
         with(holder.itemView){
+            imvStudentId.setImageBitmap(setImage(itemLoan.image.encoded))
             txvStudentName.text = itemLoan.studname
             txvStudentCode.text = itemLoan.code
             txvStudentHelp.text = itemLoan.loan
             txvStudentClass.text = itemLoan.signature
             txvStudentGroup.text = itemLoan.group
+            txvStudentDate.text = itemLoan.date
         }
     }
+
+    private fun setImage(encoded: String): Bitmap? {
+        val base64Image: String = encoded.split(",").get(1)
+        val decodedString: ByteArray = Base64.decode(base64Image, Base64.DEFAULT)
+        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+    }
+
     fun setList(list: List<LoanModel>){
         listLoan = list
+        notifyDataSetChanged()
     }
 }
