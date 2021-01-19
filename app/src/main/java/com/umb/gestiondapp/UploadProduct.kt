@@ -2,7 +2,6 @@ package com.umb.gestiondapp
 
 import android.Manifest
 import android.app.Activity
-import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
@@ -21,6 +20,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.umb.gestiondapp.LocationsActivity.Companion.LOCATION
+import com.umb.gestiondapp.models.Product
 import kotlinx.android.synthetic.main.form.*
 import java.io.File
 import java.io.FileInputStream
@@ -38,24 +38,13 @@ class UploadProduct : AppCompatActivity() {
     val storageRef = storage.reference
     var photoUrl: Uri? = null
     private var product = Product()
-    private val micros = ArrayList<String>()
-    private val location = intent.getStringExtra(LOCATION)
+    private var location = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.form)
+        location = intent.getStringExtra(LOCATION) ?: ""
         initListeners()
-        initLocationAdapter()
-        getMicros()
-    }
-
-    private fun initLocationAdapter() {
-        val adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_item,
-            listOf("Activo", "Pasivo", "users")
-        )
-        auTxvSelectLocation.setAdapter(adapter)
     }
 
     private fun initListeners() {
@@ -70,12 +59,10 @@ class UploadProduct : AppCompatActivity() {
 
         edtMarca.addTextChangedListener {
             product.marca = it?.toString() ?: ""
-            button2.isEnabled = product.enableButton()
         }
 
         edtModelo.addTextChangedListener {
             product.modelo = it?.toString() ?: ""
-            button2.isEnabled = product.enableButton()
         }
 
         edtNombre.addTextChangedListener {
@@ -90,6 +77,15 @@ class UploadProduct : AppCompatActivity() {
 
         edtSerie.addTextChangedListener{
             product.serie = it?.toString()?: ""
+        }
+
+        edtLocation.addTextChangedListener {
+            product.ubicacion = it?.toString()?: ""
+            button2.isEnabled = product.enableButton()
+        }
+
+        edtIso.addTextChangedListener {
+            product.iso = it?.toString()?: ""
             button2.isEnabled = product.enableButton()
         }
 
@@ -99,38 +95,9 @@ class UploadProduct : AppCompatActivity() {
 
     }
 
-    fun getMicros(){
-        dbRef = database.getReference(location)
-        dbRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                micros.clear()
-                dataSnapshot.children.forEach {
-                    micros.add(it.key.toString())
-                }
-                setMicros()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-                print(error.toException())
-            }
-        })
-    }
-
-    private fun setMicros() {
-        val adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_item,
-            micros
-        )
-        auTxvMicro.setAdapter(adapter)
-    }
-
     private fun saveProduct() {
-        dbRef = database.getReference("/")
-        dbRef.child(auTxvSelectLocation.text.toString())
-            .child(auTxvMicro.text.toString())
-            .child(Date().toString())
+        dbRef = database.getReference(location)
+        dbRef.child(Date().toString())
             .setValue(product).addOnSuccessListener {
                 Toast.makeText(this, "Producto subido con éxito", Toast.LENGTH_SHORT).show()
                 clearFields()
@@ -145,8 +112,8 @@ class UploadProduct : AppCompatActivity() {
         edtNombre.setText("")
         edtMarca.setText("")
         edtModelo.setText("")
-        auTxvMicro.setText("")
-        auTxvSelectLocation.setText("")
+        edtIso.setText("")
+        edtLocation.setText("")
         button2.isEnabled = product.enableButton()
 
     }
@@ -243,19 +210,4 @@ class UploadProduct : AppCompatActivity() {
 private fun String?.toIntNotEmpty(): Int {
     return if(this.isNullOrEmpty()) 0
     else this.toInt()
-}
-
-data class Product(
-    var nombre: String = "",
-    var precio: Int = 0,
-    var marca: String = "",
-    var serie: String = "",
-    var estado: String = "",
-    var modelo: String = "",
-    var fotoUrl: String = ""
-) {
-    fun enableButton() =
-        nombre.isNotEmpty() && precio != 0 && marca.isNotEmpty() && serie.isNotEmpty() &&
-                estado.isNotEmpty() && fotoUrl.isNotEmpty() && modelo.isNotEmpty()
-
 }

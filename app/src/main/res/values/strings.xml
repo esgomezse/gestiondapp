@@ -6,4 +6,5 @@
         <item> Dispositivos activos </item>
         <item> Dispositivos pasivos </item>
     </string-array>
+    <string name="product_name">![CDATA[<b>Nombre:</b>]] %1$s</string>
 </resources>

@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.locations.*
  */
 class LocationsActivity : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.locations)
@@ -36,10 +35,9 @@ class LocationsActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val APARTMENT = "Apartmento"
+        const val APARTMENT = "Apartamento"
         const val LOCATION = "location"
-        const val EXPO = "Exposición"
+        const val EXPO = "Exposicion"
         const val SUPPLIER = "Proveedores"
-
     }
 }

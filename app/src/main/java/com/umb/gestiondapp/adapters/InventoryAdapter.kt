@@ -1,5 +1,6 @@
 package com.umb.gestiondapp.adapters
 
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,11 +31,11 @@ class InventoryAdapter: RecyclerView.Adapter<InventoryAdapter.InventoryViewHolde
         val itemInventory = listInventory[position]
         //holder.itemView.imageInventario
         with(holder.itemView){
-            txvNombreInv.text = itemInventory.name
+            txvNombreInv.text = Html.fromHtml(context.getString(R.string.product_name, itemInventory.name))
             txvMarcaInv.text = itemInventory.brand
             txvModeloInv.text = itemInventory.model
             txvSerieInv.text = itemInventory.serie
-            txvCostoInv.text = itemInventory.price
+            txvCostoInv.text = itemInventory.price.toString()
             txvUbicacionInv.text = itemInventory.location
             txvEstadoInv.text = itemInventory.status
         }

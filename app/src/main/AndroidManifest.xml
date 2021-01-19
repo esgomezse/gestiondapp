@@ -35,6 +35,8 @@
             android:label="Gestionar prestamo"/>
         <activity android:name=".LoanOptions"
             android:label="Prestamos"/>
+        <activity android:name=".FilterInventoryActivity"
+            android:label="Inventario"/>
 
     </application>
 </manifest>

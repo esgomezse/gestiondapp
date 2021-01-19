@@ -24,5 +24,12 @@ class OptionsActivity : AppCompatActivity() {
                 }
             )
         }
+        cnlInventory.setOnClickListener {
+            startActivity(
+                Intent(this, FilterInventoryActivity::class.java).apply {
+                    putExtra(LOCATION, intent.getStringExtra(LOCATION))
+                }
+            )
+        }
     }
 }
