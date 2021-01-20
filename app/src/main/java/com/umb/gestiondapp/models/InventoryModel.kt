@@ -1,12 +1,15 @@
 package com.umb.gestiondapp.models
 
+import android.os.Parcelable
 import com.google.firebase.database.PropertyName
+import kotlinx.android.parcel.Parcelize
 
 
 /**
  * Created By Juan Felipe Arango on 11/01/21
  * Copyright ©2020 Merqueo. All rights reserved
  */
+@Parcelize
 data class InventoryModel (
     var id: String ="",
     @get:PropertyName("nombre")
@@ -35,5 +38,19 @@ data class InventoryModel (
     var image: String = "",
     @get:PropertyName("iso")
     @set:PropertyName("iso")
-    var iso: String = ""
-)
+    var iso: String = "",
+    var usuarioPrestamo: String = ""
+) : Parcelable {
+    fun toMap(): Map<String, Any?> {
+        return mapOf("nombre" to name,
+            "marca" to brand,
+            "modelo" to model,
+            "serie" to serie,
+            "precio" to price,
+            "ubicacion" to location,
+            "estado" to status,
+            "fotoUrl" to image,
+            "iso" to iso,
+            "usuarioPrestamo" to usuarioPrestamo)
+    }
+}

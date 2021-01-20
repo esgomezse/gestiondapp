@@ -3,6 +3,8 @@ package com.umb.gestiondapp
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.umb.gestiondapp.LoanActivity.Companion.ITEM_LOAN
+import com.umb.gestiondapp.models.LoanModel
 import kotlinx.android.synthetic.main.locations.*
 
 
@@ -12,9 +14,12 @@ import kotlinx.android.synthetic.main.locations.*
  */
 class LocationsActivity : AppCompatActivity() {
 
+    private var loan: LoanModel? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.locations)
+        loan = intent.getParcelableExtra(ITEM_LOAN)
         cnlApartamento.setOnClickListener {
             navigateToOptions(APARTMENT)
         }
@@ -27,11 +32,26 @@ class LocationsActivity : AppCompatActivity() {
     }
 
     private fun navigateToOptions(location: String) {
-        startActivity(
-            Intent(this, OptionsActivity::class.java).apply {
-                putExtra(LOCATION, location)
-            }
-        )
+        if (loan == null)
+            startActivity(
+                Intent(this, OptionsActivity::class.java).apply {
+                    putExtra(LOCATION, location)
+                }
+            )
+        else
+            startActivityForResult(
+                Intent(this, FilterInventoryActivity::class.java).apply {
+                    putExtra(LOCATION, location)
+                    putExtra(ITEM_LOAN, loan)
+                },
+                LOANED
+            )
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(loan!=null && requestCode== LOANED && resultCode==SUCCESS) finish()
+        super.onActivityResult(requestCode, resultCode, data)
+
     }
 
     companion object {
@@ -39,5 +59,7 @@ class LocationsActivity : AppCompatActivity() {
         const val LOCATION = "location"
         const val EXPO = "Exposicion"
         const val SUPPLIER = "Proveedores"
+        const val LOANED = 420
+        const val SUCCESS = 69
     }
 }

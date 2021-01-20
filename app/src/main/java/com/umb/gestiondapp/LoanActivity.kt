@@ -1,8 +1,10 @@
 package com.umb.gestiondapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
@@ -36,23 +38,46 @@ class LoanActivity : AppCompatActivity() {
 
     private fun addObservers() {
         loanAdapter.events.observe(this, Observer {
-
-            val loan = it.toMap()
-
-            val childUpdates = hashMapOf<String, Any>(
-                "/${it.id}" to loan
-            )
-
-            myRef.updateChildren(childUpdates).addOnSuccessListener {
-                Toast.makeText(this, "Cambio de estado realizado", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener {
-                Toast.makeText(this, "Algo ha salido mal, vuelve a intentarlo", Toast.LENGTH_SHORT)
-                    .show()
+            when(it.status){
+                BORROWED -> startActivity(
+                    Intent(this, LocationsActivity::class.java).apply {
+                        putExtra(ITEM_LOAN, it)
+                    }
+                )
+                else -> {
+                    returnProduct(it)
+                }
             }
+
         })
     }
 
+    private fun returnProduct(loanModel: LoanModel) {
+        loanModel.product.usuarioPrestamo = ""
+        val loanMap = loanModel?.toMap()?.toMutableMap() ?: mutableMapOf()
+        loanMap["Producto"] = loanModel.product.toMap()
+        loanMap["ProductoUbicacion"] = loanModel.productLocation
+        loanMap["ProductoID"] = loanModel.productId
+
+        val product = loanModel.product.toMap()
+
+        val childUpdates = hashMapOf<String, Any>(
+            "/prestamos/${loanModel.id}" to loanMap,
+            "/${loanModel.productLocation}/${loanModel.productId}" to product
+        )
+        myRef = database.getReference("/")
+        myRef.updateChildren(childUpdates).addOnSuccessListener {
+            initFirebaseListener()
+        }.addOnFailureListener {
+            Toast.makeText(this, "Algo ha salido mal, vuelve a intentarlo", Toast.LENGTH_SHORT)
+                .show()
+
+        }
+
+    }
+
     private fun initFirebaseListener() {
+        myRef = database.getReference("prestamos")
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 loans.clear()
@@ -61,6 +86,7 @@ class LoanActivity : AppCompatActivity() {
                     loanModel.id = it.key ?: ""
                     if (loanModel.status == kindOfLoan) loans.add(loanModel)
                 }
+                pgBarLoan.isVisible = false
                 loanAdapter.setList(loans)
             }
 
@@ -74,5 +100,6 @@ class LoanActivity : AppCompatActivity() {
         const val KIND_OF_LOAN = "kind of loan"
         const val NEW = "nuevo"
         const val BORROWED = "prestado"
+        const val ITEM_LOAN = "loan"
     }
 }

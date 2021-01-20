@@ -7,13 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.umb.gestiondapp.LoanActivity.Companion.BORROWED
 import com.umb.gestiondapp.LoanActivity.Companion.NEW
 import com.umb.gestiondapp.R
+import com.umb.gestiondapp.boldTitle
 import com.umb.gestiondapp.models.LoanModel
+import com.umb.gestiondapp.setImageUrl
 import kotlinx.android.synthetic.main.item_loan.view.*
 
 
@@ -51,6 +52,22 @@ class LoanAdapter : RecyclerView.Adapter<LoanAdapter.LoanViewHolder>() {
                 }
                 events.value = itemLoan
             }
+            setProduct(holder.itemView, itemLoan)
+        }
+    }
+
+    private fun setProduct(
+        view: View,
+        itemLoan: LoanModel
+    ) {
+        if (itemLoan.productId.isNotEmpty()){
+            view.cnlProductInfo.isVisible = true
+            view.txvProductName.boldTitle("Nombre Equipo: ", itemLoan.product.name)
+            view.txvProductLocation.boldTitle("Ubicación: ", itemLoan.productLocation )
+            view.txvProductISO.boldTitle("ISO: ", itemLoan.product.iso)
+            view.imvProductImage.setImageUrl(itemLoan.product.image)
+        }else{
+            view.cnlProductInfo.isVisible = false
         }
     }
 

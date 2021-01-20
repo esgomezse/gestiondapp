@@ -10,21 +10,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.umb.gestiondapp.R
+import com.umb.gestiondapp.boldTitle
 import com.umb.gestiondapp.models.InventoryModel
+import com.umb.gestiondapp.models.LoanModel
+import com.umb.gestiondapp.setImageUrl
 import kotlinx.android.synthetic.main.item_inventory.view.*
 
 /**
  * Created By Juan Felipe Arango on 10/01/21
  * Copyright ©2020 Merqueo. All rights reserved
  */
-class InventoryAdapter: RecyclerView.Adapter<InventoryAdapter.InventoryViewHolder>() {
+class InventoryAdapter : RecyclerView.Adapter<InventoryAdapter.InventoryViewHolder>() {
 
     private var listInventory = mutableListOf<InventoryModel>()
-
-    inner class InventoryViewHolder(v : View) : RecyclerView.ViewHolder(v)
+    private var loanAdapter: LoanModel?=null
+    var events = MutableLiveData<InventoryModel>()
+    inner class InventoryViewHolder(v: View) : RecyclerView.ViewHolder(v)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InventoryViewHolder {
         val view =
@@ -37,38 +43,32 @@ class InventoryAdapter: RecyclerView.Adapter<InventoryAdapter.InventoryViewHolde
     override fun onBindViewHolder(holder: InventoryViewHolder, position: Int) {
         val itemInventory = listInventory[position]
         //holder.itemView.imageInventario
-        with(holder.itemView){
-            txvNombreInv.boldTitle("Nombre: " , itemInventory.name)
-            txvMarcaInv.boldTitle("Marca: " , itemInventory.brand)
-            txvModeloInv.boldTitle("Modelo: " , itemInventory.model)
-            txvSerieInv.boldTitle("Serie: " , itemInventory.serie)
-            txvCostoInv.boldTitle("Costo: " , itemInventory.price.toString())
-            txvUbicacionInv.boldTitle("Ubicación: " , itemInventory.location)
-            txvEstadoInv.boldTitle("Estado: " , itemInventory.status)
+        with(holder.itemView) {
+            txvNombreInv.boldTitle("Nombre: ", itemInventory.name)
+            txvMarcaInv.boldTitle("Marca: ", itemInventory.brand)
+            txvModeloInv.boldTitle("Modelo: ", itemInventory.model)
+            txvSerieInv.boldTitle("Serie: ", itemInventory.serie)
+            txvCostoInv.boldTitle("Costo: ", itemInventory.price.toString())
+            txvUbicacionInv.boldTitle("Ubicación: ", itemInventory.location)
+            txvEstadoInv.boldTitle("Estado: ", itemInventory.status)
             txvISO.boldTitle("ISO: ", itemInventory.iso)
             imageInventario.setImageUrl(itemInventory.image)
+            btnConfirm.isVisible = loanAdapter!=null
+            if(itemInventory.usuarioPrestamo.isNotEmpty()) {
+                txvLoaned.isVisible = true
+                btnConfirm.isEnabled = false
+            }
+            btnConfirm.setOnClickListener {
+                events.value = itemInventory
+            }
         }
     }
 
-    fun setList(list: List<InventoryModel>){
+    fun setList(list: List<InventoryModel>, loan: LoanModel?) {
         listInventory.clear()
         listInventory.addAll(list)
+        loanAdapter = loan
         notifyDataSetChanged()
     }
 
-}
-
-fun TextView.boldTitle(title: String?, text: String?) {
-    if (text==null || title==null) return
-    val builder= SpannableStringBuilder(title)
-    builder.setSpan(StyleSpan(Typeface.BOLD), 0, title.length , Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-    builder.append(" $text")
-    this.text = builder
-}
-
-fun ImageView.setImageUrl(url: String){
-    Glide.with(this)
-        .load(url)
-        .placeholder(R.drawable.ic_image_not_supported)
-        .into(this)
 }
