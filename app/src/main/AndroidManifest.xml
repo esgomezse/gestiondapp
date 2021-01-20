@@ -28,7 +28,8 @@
             android:parentActivityName=".HomeActivity"
             android:theme="@style/MaterialAppTheme">
         </activity>
-        <activity android:name=".OptionsActivity"/>
+        <activity android:name=".OptionsActivity"
+            android:theme="@style/AppThemeNoActionBar"/>
         <activity android:name=".LocationsActivity"
             android:theme="@style/AppThemeNoActionBar"/>
         <activity android:name=".LoanActivity"
@@ -36,7 +37,9 @@
         <activity android:name=".LoanOptions"
             android:label="Prestamos"/>
         <activity android:name=".FilterInventoryActivity"
-            android:label="Inventario"/>
+            android:label="Inventario"
+            android:theme="@style/AppThemeNoActionBar"
+            android:windowSoftInputMode="adjustPan"/>
 
     </application>
 </manifest>

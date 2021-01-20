@@ -1,10 +1,17 @@
 package com.umb.gestiondapp.adapters
 
+import android.graphics.Typeface
 import android.text.Html
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.umb.gestiondapp.R
 import com.umb.gestiondapp.models.InventoryModel
 import kotlinx.android.synthetic.main.item_inventory.view.*
@@ -15,7 +22,7 @@ import kotlinx.android.synthetic.main.item_inventory.view.*
  */
 class InventoryAdapter: RecyclerView.Adapter<InventoryAdapter.InventoryViewHolder>() {
 
-    private var listInventory = listOf<InventoryModel>()
+    private var listInventory = mutableListOf<InventoryModel>()
 
     inner class InventoryViewHolder(v : View) : RecyclerView.ViewHolder(v)
 
@@ -31,18 +38,37 @@ class InventoryAdapter: RecyclerView.Adapter<InventoryAdapter.InventoryViewHolde
         val itemInventory = listInventory[position]
         //holder.itemView.imageInventario
         with(holder.itemView){
-            txvNombreInv.text = Html.fromHtml(context.getString(R.string.product_name, itemInventory.name))
-            txvMarcaInv.text = itemInventory.brand
-            txvModeloInv.text = itemInventory.model
-            txvSerieInv.text = itemInventory.serie
-            txvCostoInv.text = itemInventory.price.toString()
-            txvUbicacionInv.text = itemInventory.location
-            txvEstadoInv.text = itemInventory.status
+            txvNombreInv.boldTitle("Nombre: " , itemInventory.name)
+            txvMarcaInv.boldTitle("Marca: " , itemInventory.brand)
+            txvModeloInv.boldTitle("Modelo: " , itemInventory.model)
+            txvSerieInv.boldTitle("Serie: " , itemInventory.serie)
+            txvCostoInv.boldTitle("Costo: " , itemInventory.price.toString())
+            txvUbicacionInv.boldTitle("Ubicación: " , itemInventory.location)
+            txvEstadoInv.boldTitle("Estado: " , itemInventory.status)
+            txvISO.boldTitle("ISO: ", itemInventory.iso)
+            imageInventario.setImageUrl(itemInventory.image)
         }
     }
 
     fun setList(list: List<InventoryModel>){
-        listInventory = list
+        listInventory.clear()
+        listInventory.addAll(list)
+        notifyDataSetChanged()
     }
 
+}
+
+fun TextView.boldTitle(title: String?, text: String?) {
+    if (text==null || title==null) return
+    val builder= SpannableStringBuilder(title)
+    builder.setSpan(StyleSpan(Typeface.BOLD), 0, title.length , Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    builder.append(" $text")
+    this.text = builder
+}
+
+fun ImageView.setImageUrl(url: String){
+    Glide.with(this)
+        .load(url)
+        .placeholder(R.drawable.ic_image_not_supported)
+        .into(this)
 }

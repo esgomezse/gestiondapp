@@ -1,7 +1,11 @@
 package com.umb.gestiondapp
 
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -14,6 +18,8 @@ import com.umb.gestiondapp.LocationsActivity.Companion.LOCATION
 import com.umb.gestiondapp.adapters.InventoryAdapter
 import com.umb.gestiondapp.models.InventoryModel
 import kotlinx.android.synthetic.main.activity_inventory_filter.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 /**
@@ -27,6 +33,7 @@ class FilterInventoryActivity : AppCompatActivity() {
     private lateinit var myRef: DatabaseReference
     private val inventory = ArrayList<InventoryModel>()
     private var location = ""
+    private var typeFilter = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +43,47 @@ class FilterInventoryActivity : AppCompatActivity() {
         rcvInventory.adapter = inventoryAdapter
         rcvInventory.layoutManager = LinearLayoutManager(this)
         initFirebaseListener()
+        initObservers()
+    }
+
+    private fun initObservers() {
+        edtFilterWord.addTextChangedListener { str ->
+            if (str.isNullOrEmpty()) {
+                print("test")
+                inventoryAdapter.setList(inventory)
+            } else {
+                val upperStr = str.toString().toUpperCase(Locale.getDefault())
+                val filteredList = when (typeFilter) {
+                    NAME -> inventory.filter {
+                        it.name.toUpperCase(Locale.getDefault()).contains(upperStr)
+                    }
+                    BRAND -> inventory.filter { it.brand.toUpperCase(Locale.getDefault()).contains(upperStr)}
+                    MODEL -> inventory.filter { it.model.toUpperCase(Locale.getDefault()).contains(upperStr) }
+                    SERIE -> inventory.filter { it.serie.toUpperCase(Locale.getDefault()).contains(upperStr) }
+                    PRICE -> inventory.filter { it.price.toString() == str.toString() }
+                    LOCATION_FIELD -> inventory.filter { it.location.toUpperCase(Locale.getDefault()).contains(upperStr) }
+                    STATUS -> inventory.filter { it.status.toUpperCase(Locale.getDefault()).contains(upperStr) }
+                    ISO -> inventory.filter { it.iso.toUpperCase(Locale.getDefault()).contains(upperStr) }
+                    else -> emptyList()
+                }
+                inventoryAdapter.setList(filteredList)
+            }
+        }
+
+        spinner2.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View?,
+                position: Int,
+                id: Long
+            ) {
+                typeFilter = position
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+            }
+        }
+
     }
 
     private fun initFirebaseListener() {
@@ -48,11 +96,23 @@ class FilterInventoryActivity : AppCompatActivity() {
                     inventory.add(loanModel)
                 }
                 inventoryAdapter.setList(inventory)
+                pgbar.visibility = View.GONE
             }
 
             override fun onCancelled(error: DatabaseError) {
                 print(error.toException())
             }
         })
+    }
+
+    companion object {
+        const val NAME = 0
+        const val BRAND = 1
+        const val MODEL = 2
+        const val SERIE = 3
+        const val PRICE = 4
+        const val LOCATION_FIELD = 5
+        const val STATUS = 6
+        const val ISO = 7
     }
 }

@@ -6,5 +6,15 @@
         <item> Dispositivos activos </item>
         <item> Dispositivos pasivos </item>
     </string-array>
-    <string name="product_name">![CDATA[<b>Nombre:</b>]] %1$s</string>
+
+    <string-array name="spinner_type_filter">
+        <item>Nombre</item>
+        <item>Marca</item>
+        <item>Modelo</item>
+        <item>Serie</item>
+        <item>Costo</item>
+        <item>Ubicacion</item>
+        <item>Estado</item>
+        <item>ISO</item>
+    </string-array>
 </resources>
