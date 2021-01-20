@@ -14,12 +14,12 @@ import kotlinx.android.synthetic.main.locations.*
  */
 class LocationsActivity : AppCompatActivity() {
 
-    private var loan: LoanModel? = null
+    private var loanFlag = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.locations)
-        loan = intent.getParcelableExtra(ITEM_LOAN)
+        loanFlag = intent.getBooleanExtra(ITEM_LOAN, false)
         cnlApartamento.setOnClickListener {
             navigateToOptions(APARTMENT)
         }
@@ -32,7 +32,7 @@ class LocationsActivity : AppCompatActivity() {
     }
 
     private fun navigateToOptions(location: String) {
-        if (loan == null)
+        if (!loanFlag)
             startActivity(
                 Intent(this, OptionsActivity::class.java).apply {
                     putExtra(LOCATION, location)
@@ -42,14 +42,14 @@ class LocationsActivity : AppCompatActivity() {
             startActivityForResult(
                 Intent(this, FilterInventoryActivity::class.java).apply {
                     putExtra(LOCATION, location)
-                    putExtra(ITEM_LOAN, loan)
+                    putExtra(ITEM_LOAN, true)
                 },
                 LOANED
             )
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if(loan!=null && requestCode== LOANED && resultCode==SUCCESS) finish()
+        if(ObjectLoan.loanModel!=null && requestCode== LOANED && resultCode == SUCCESS) finish()
         super.onActivityResult(requestCode, resultCode, data)
 
     }

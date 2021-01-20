@@ -28,8 +28,8 @@ import kotlinx.android.synthetic.main.item_inventory.view.*
 class InventoryAdapter : RecyclerView.Adapter<InventoryAdapter.InventoryViewHolder>() {
 
     private var listInventory = mutableListOf<InventoryModel>()
-    private var loanAdapter: LoanModel?=null
     var events = MutableLiveData<InventoryModel>()
+    var loanFlag = false
     inner class InventoryViewHolder(v: View) : RecyclerView.ViewHolder(v)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InventoryViewHolder {
@@ -53,7 +53,7 @@ class InventoryAdapter : RecyclerView.Adapter<InventoryAdapter.InventoryViewHold
             txvEstadoInv.boldTitle("Estado: ", itemInventory.status)
             txvISO.boldTitle("ISO: ", itemInventory.iso)
             imageInventario.setImageUrl(itemInventory.image)
-            btnConfirm.isVisible = loanAdapter!=null
+            btnConfirm.isVisible = loanFlag
             if(itemInventory.usuarioPrestamo.isNotEmpty()) {
                 txvLoaned.isVisible = true
                 btnConfirm.isEnabled = false
@@ -64,10 +64,10 @@ class InventoryAdapter : RecyclerView.Adapter<InventoryAdapter.InventoryViewHold
         }
     }
 
-    fun setList(list: List<InventoryModel>, loan: LoanModel?) {
+    fun setList(list: List<InventoryModel>, loan: Boolean) {
         listInventory.clear()
         listInventory.addAll(list)
-        loanAdapter = loan
+        loanFlag = loan
         notifyDataSetChanged()
     }
 

@@ -41,13 +41,14 @@ class LoanActivity : AppCompatActivity() {
             when(it.status){
                 BORROWED -> startActivity(
                     Intent(this, LocationsActivity::class.java).apply {
-                        putExtra(ITEM_LOAN, it)
+                        putExtra(ITEM_LOAN, true)
                     }
                 )
                 else -> {
                     returnProduct(it)
                 }
             }
+            ObjectLoan.loanModel = it
 
         })
     }

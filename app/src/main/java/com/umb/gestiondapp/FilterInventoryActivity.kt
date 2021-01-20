@@ -19,11 +19,9 @@ import com.umb.gestiondapp.LocationsActivity.Companion.LOCATION
 import com.umb.gestiondapp.LocationsActivity.Companion.SUCCESS
 import com.umb.gestiondapp.adapters.InventoryAdapter
 import com.umb.gestiondapp.models.InventoryModel
-import com.umb.gestiondapp.models.LoanModel
 import kotlinx.android.synthetic.main.activity_inventory_filter.*
 import java.util.*
 import kotlin.collections.ArrayList
-
 
 /**
  * Created By Juan Felipe Arango on 10/01/21
@@ -37,13 +35,13 @@ class FilterInventoryActivity : AppCompatActivity() {
     private val inventory = ArrayList<InventoryModel>()
     private var location = ""
     private var typeFilter = 0
-    private var loan: LoanModel? = null
+    private var loanFlag = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inventory_filter)
         location = intent.getStringExtra(LOCATION) ?: ""
-        loan = intent.getParcelableExtra(LoanActivity.ITEM_LOAN)
+        loanFlag = intent.getBooleanExtra(LoanActivity.ITEM_LOAN, false)
         myRef = database.getReference("/$location")
         rcvInventory.adapter = inventoryAdapter
         rcvInventory.layoutManager = LinearLayoutManager(this)
@@ -55,7 +53,7 @@ class FilterInventoryActivity : AppCompatActivity() {
         edtFilterWord.addTextChangedListener { str ->
             if (str.isNullOrEmpty()) {
                 print("test")
-                inventoryAdapter.setList(inventory, loan)
+                inventoryAdapter.setList(inventory, loanFlag)
             } else {
                 val upperStr = str.toString().toUpperCase(Locale.getDefault())
                 val filteredList = when (typeFilter) {
@@ -83,7 +81,7 @@ class FilterInventoryActivity : AppCompatActivity() {
                     }
                     else -> emptyList()
                 }
-                inventoryAdapter.setList(filteredList, loan)
+                inventoryAdapter.setList(filteredList, loanFlag)
             }
         }
 
@@ -107,16 +105,16 @@ class FilterInventoryActivity : AppCompatActivity() {
     }
 
     private fun saveProduct(inventoryModel: InventoryModel) {
-        inventoryModel.usuarioPrestamo = loan?.id ?: ""
+        inventoryModel.usuarioPrestamo = ObjectLoan.loanModel?.id ?: ""
 
-        val loanMap = loan?.toMap()?.toMutableMap() ?: mutableMapOf()
+        val loanMap = ObjectLoan.loanModel?.toMap()?.toMutableMap() ?: mutableMapOf()
 
         loanMap["Producto"] = inventoryModel.toMap()
         loanMap["ProductoUbicacion"] = location
         loanMap["ProductoID"] = inventoryModel.id
 
         val childUpdates = hashMapOf<String, Any>(
-            "/prestamos/${loan!!.id}" to loanMap,
+            "/prestamos/${ObjectLoan.loanModel!!.id}" to loanMap,
             "/$location/${inventoryModel.id}" to inventoryModel.toMap()
         )
         myRef = database.getReference("/")
@@ -139,7 +137,7 @@ class FilterInventoryActivity : AppCompatActivity() {
                     loanModel.id = it.key ?: ""
                     inventory.add(loanModel)
                 }
-                inventoryAdapter.setList(inventory, loan)
+                inventoryAdapter.setList(inventory, loanFlag)
                 pgbar.visibility = View.GONE
             }
 
