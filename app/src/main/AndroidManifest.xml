@@ -29,16 +29,15 @@
             android:theme="@style/MaterialAppTheme">
         </activity>
         <activity android:name=".OptionsActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
+            android:label="Opciones"/>
         <activity android:name=".LocationsActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
+            android:label="Asistencias personales"/>
         <activity android:name=".LoanActivity"
             android:label="Gestionar prestamo"/>
         <activity android:name=".LoanOptions"
             android:label="Prestamos"/>
         <activity android:name=".FilterInventoryActivity"
             android:label="Inventario"
-            android:theme="@style/AppThemeNoActionBar"
             android:windowSoftInputMode="adjustPan"/>
 
     </application>
