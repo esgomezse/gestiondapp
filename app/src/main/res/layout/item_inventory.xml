@@ -108,7 +108,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageInventario"
         app:layout_constraintTop_toBottomOf="@+id/txvEstadoInv"
-        tools:text="ISO" />
+        tools:text="ISO 9999" />
 
     <Button
         android:id="@+id/btnConfirm"

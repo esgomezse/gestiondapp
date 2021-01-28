@@ -24,14 +24,14 @@
             android:label="Menú"/>
         <activity android:name=".MacroActivity" />
         <activity android:name=".UploadProduct"
-            android:label="Subir ayuda"
+            android:label="Subir un producto de apoyo"
             android:parentActivityName=".HomeActivity"
             android:theme="@style/MaterialAppTheme">
         </activity>
         <activity android:name=".OptionsActivity"
             android:label="Opciones"/>
         <activity android:name=".LocationsActivity"
-            android:label="Asistencias personales"/>
+            android:label="Productos de apoyo"/>
         <activity android:name=".LoanActivity"
             android:label="Gestionar prestamo"/>
         <activity android:name=".LoanOptions"
